@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: 테스트
 comments: true
 tags: [jekyll, github, markdown]
