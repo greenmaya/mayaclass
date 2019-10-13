@@ -1,6 +1,6 @@
 {
 "companyName": "DefaultCompany",
-"productName": "New Unity Project",
+"productName": "Modeling",
 "productVersion": "0.1",
 "dataUrl": "chair.data.unityweb",
 "wasmCodeUrl": "chair.wasm.code.unityweb",
