@@ -140,7 +140,11 @@
 					//animate();
 
 					//scene.add( object );
-				}
+				}, undefined, function ( e ) {
+
+				console.error( e );
+
+				} );
 				// new THREE.BufferGeometryLoader().load( 'models/json/WaltHeadLo_buffergeometry.json', function ( geometry ) {
 
 				// 	// on the left
