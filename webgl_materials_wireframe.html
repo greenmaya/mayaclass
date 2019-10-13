@@ -57,7 +57,6 @@
 			import * as THREE from 'https://threejs.org/build/three.module.js';
 
 			import { GUI } from 'https://threejs.org/examples/jsm/libs/dat.gui.module.js';
-			import { FBXLoader } from 'https://threejs.org/examples/jsm/loaders/FBXLoader.js';
 			var API = {
 				widthFactor: 1
 			};
@@ -78,25 +77,9 @@
 				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 500 );
 				camera.position.z = 150;
 				
-				var loader = new FBXLoader();
-				loader.load( 'fbx/chair.fbx', function ( object ) {
+				new THREE.BufferGeometryLoader().load( 'json/d.json', function ( geometry ) {
 
-					// mixer = new THREE.AnimationMixer( object );
-
-					// var action = mixer.clipAction( object.animations[ 0 ] );
-					// action.play();
-
-					// object.traverse( function ( child ) {
-
-					// 	if ( child.isMesh ) {
-
-					// 		child.castShadow = true;
-					// 		child.receiveShadow = true;
-
-					// 	}
-
-					// } );
-
+					// on the left
 
 					var material = new THREE.MeshBasicMaterial( {
 
@@ -105,7 +88,7 @@
 
 					} );
 
-					mesh1 = new THREE.Mesh( object, material );
+					mesh1 = new THREE.Mesh( geometry, material );
 					mesh1.position.set( - 40, 0, 0 );
 
 					scene.add( mesh1 );
@@ -125,74 +108,23 @@
 
 					material.extensions.derivatives = true;
 
-					object.removeAttribute( 'normal' );
-					object.removeAttribute( 'uv' );
+					geometry.removeAttribute( 'normal' );
+					geometry.removeAttribute( 'uv' );
 
-					setupAttributes( object );
+					setupAttributes( geometry );
 
-					mesh2 = new THREE.Mesh( object, material );
+					mesh2 = new THREE.Mesh( geometry, material );
 					mesh2.position.set( 40, 0, 0 );
 
 					scene.add( mesh2 );
 
 					//
 
-					//animate();
-
-					//scene.add( object );
-				}, undefined, function ( e ) {
-
-				console.error( e );
+					animate();
 
 				} );
-				// new THREE.BufferGeometryLoader().load( 'models/json/WaltHeadLo_buffergeometry.json', function ( geometry ) {
 
-				// 	// on the left
-
-				// 	var material = new THREE.MeshBasicMaterial( {
-
-				// 		color: 0xe0e0ff,
-				// 		wireframe: true
-
-				// 	} );
-
-				// 	mesh1 = new THREE.Mesh( geometry, material );
-				// 	mesh1.position.set( - 40, 0, 0 );
-
-				// 	scene.add( mesh1 );
-
-				// 	// on the right
-
-				// 	var uniforms = { 'widthFactor': { value: API.widthFactor } };
-
-				// 	var material = new THREE.ShaderMaterial( {
-
-				// 		uniforms: uniforms,
-				// 		vertexShader: document.getElementById( 'vertexShader' ).textContent,
-				// 		fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-				// 		side: THREE.DoubleSide
-
-				// 	} );
-
-				// 	material.extensions.derivatives = true;
-
-				// 	geometry.removeAttribute( 'normal' );
-				// 	geometry.removeAttribute( 'uv' );
-
-				// 	setupAttributes( geometry );
-
-				// 	mesh2 = new THREE.Mesh( geometry, material );
-				// 	mesh2.position.set( 40, 0, 0 );
-
-				// 	scene.add( mesh2 );
-
-				// 	//
-
-				// 	animate();
-
-				// } );
-
-				//
+				
 
 				var gui = new GUI();
 
